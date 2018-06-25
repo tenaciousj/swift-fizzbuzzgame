@@ -141,4 +141,32 @@ class ViewControllerUITests: XCTestCase {
         XCTAssertFalse(wrongalert.exists)
     }
     
+    func testTimerLabelStarts() {
+        let app = XCUIApplication()
+        let timerLabel = app/*@START_MENU_TOKEN@*/.staticTexts["timerLabel"]/*[[".staticTexts[\"00:00\"]",".staticTexts[\"timerLabel\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+        let numberButton = app.buttons["numberButton"]
+        XCTAssertEqual(timerLabel.label, "00:00")
+        numberButton.tap()
+        numberButton.tap()
+        XCTAssertNotEqual(timerLabel.label, "00:00")
+        
+    }
+    
+    func testWrongAnswerResetsTimerLabel() {
+        let app = XCUIApplication()
+        let timerLabel = app/*@START_MENU_TOKEN@*/.staticTexts["timerLabel"]/*[[".staticTexts[\"00:00\"]",".staticTexts[\"timerLabel\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+        let numberButton = app.buttons["numberButton"]
+        XCTAssertEqual(timerLabel.label, "00:00")
+        numberButton.tap()
+        numberButton.tap()
+        numberButton.tap()
+        let wrongalert = app.alerts["Wrong!"]
+        XCTAssertTrue(wrongalert.exists)
+        XCTAssertTrue(wrongalert.isHittable)
+        XCTAssertTrue(wrongalert.buttons["OK"].exists)
+        XCTAssertTrue(wrongalert.buttons["OK"].isHittable)
+        wrongalert.buttons["OK"].tap()
+        XCTAssertEqual(timerLabel.label, "00:00")
+        
+    }
 }

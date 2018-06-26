@@ -33,7 +33,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var fizzButton: UIButton!
     @IBOutlet weak var numberButton: UIButton!
     @IBOutlet weak var playAgainButton: UIButton!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -149,6 +149,11 @@ class ViewController: UIViewController {
         }
     }
     
+    
+    
+    @IBAction func playAgain(_ sender: UIButton) {
+        restartGame()
+    }
     
     @IBAction func restartGame() {
         guard let unwrappedGame = game else {

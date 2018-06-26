@@ -22,12 +22,13 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4yI-Z4-FAZ">
                                 <rect key="frame" x="256" y="607" width="99" height="40"/>
+                                <accessibility key="accessibilityConfiguration" identifier="playAgainButton"/>
                                 <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="20"/>
                                 <state key="normal" title="Play Again">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="restartGame:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9iG-F8-PVs"/>
+                                    <action selector="playAgain:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZEm-2h-4jm"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OVK-N6-BQs">
@@ -119,7 +120,7 @@
                         <outlet property="fizzButton" destination="KHO-ik-dze" id="Ere-ma-Zze"/>
                         <outlet property="fizzBuzzButton" destination="1MH-nc-l8T" id="Fhv-sT-dQ5"/>
                         <outlet property="numberButton" destination="xBc-bw-9bQ" id="SIN-Xk-5SV"/>
-                        <outlet property="playAgainButton" destination="4yI-Z4-FAZ" id="yaR-H1-Fuh"/>
+                        <outlet property="playAgainButton" destination="4yI-Z4-FAZ" id="A6K-1x-e3d"/>
                         <outlet property="timerLabel" destination="1Lr-dt-bDP" id="uNs-fB-5Ib"/>
                     </connections>
                 </viewController>

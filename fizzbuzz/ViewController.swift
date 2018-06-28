@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     var time: Double = 0
     var elapsed: Double = 0
     var status: Bool = false
+    var highScore = 0
     
     var game: Game?
     var gameScore: Int? {
@@ -33,6 +34,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var fizzButton: UIButton!
     @IBOutlet weak var numberButton: UIButton!
     @IBOutlet weak var playAgainButton: UIButton!
+    @IBOutlet weak var highScoreLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +47,14 @@ class ViewController: UIViewController {
         
         gameScore = unwrappedGame.score
         timerLabel.text = "00:00"
+        
+        let defaults = UserDefaults.standard
+        if defaults.value(forKey: "highScore") != nil {
+            highScore = (defaults.value(forKey: "highScore") as! Int)
+        } else {
+            highScore = 0
+        }
+        highScoreLabel.text = NSString(format: "High Score: %i", highScore) as String
         
     }
 
@@ -161,6 +171,19 @@ class ViewController: UIViewController {
             return
         }
         resetTimer()
+        guard let unwrappedScore = self.gameScore else {
+            print("Score is nil!")
+            return
+        }
+        if unwrappedScore > highScore {
+            highScore = unwrappedScore
+            highScoreLabel.text = NSString(format: "High Score: %i", highScore) as String
+            
+            let highScoreDefault = UserDefaults.standard
+            highScoreDefault.setValue(highScore, forKey: "highScore")
+            highScoreDefault.synchronize()
+            
+        }
         self.gameScore = 0
         unwrappedGame.restartGame()
         

@@ -11,9 +11,10 @@ import UIKit
 class ViewController: UIViewController {
     
     weak var timer: Timer?
-    var startTime: Double = 0
-    var time: Double = 0
-    var elapsed: Double = 0
+//    var startTime: Double = 0
+//    var time: Double = 0
+//    var elapsed: Double = 0
+    var seconds = 30
     var status: Bool = false
     var highScore = 0
     
@@ -46,7 +47,7 @@ class ViewController: UIViewController {
         }
         
         gameScore = unwrappedGame.score
-        timerLabel.text = "00:00"
+//        timerLabel.text = "00:00"
         
         let defaults = UserDefaults.standard
         if defaults.value(forKey: "highScore") != nil {
@@ -64,19 +65,24 @@ class ViewController: UIViewController {
     }
     
     func startTimer() {
-        startTime = Date().timeIntervalSinceReferenceDate - elapsed
-        timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
-        
-        // Set Start/Stop button to true
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(ViewController.updateCounter)), userInfo: nil, repeats: true)
         status = true
+//        startTime = Date().timeIntervalSinceReferenceDate - elapsed
+//        timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
+//
+//        // Set Start/Stop button to true
+//        status = true
     }
     
     func stopTimer() {
-        elapsed = Date().timeIntervalSinceReferenceDate - startTime
-        timer?.invalidate()
         
-        // Set Start/Stop button to false
+        timer?.invalidate()
         status = false
+//        elapsed = Date().timeIntervalSinceReferenceDate - startTime
+//        timer?.invalidate()
+//
+//        // Set Start/Stop button to false
+//        status = false
         
     }
     
@@ -84,34 +90,55 @@ class ViewController: UIViewController {
         
         // Invalidate timer
         timer?.invalidate()
-        
+
         // Reset timer variables
-        startTime = 0
-        time = 0
-        elapsed = 0
+//        startTime = 0
+//        time = 0
+//        elapsed = 0
         status = false
-        
-        timerLabel.text = "00:00"
+        seconds = 30
+
+        timerLabel.text = "00:30"
         
     }
     
     @IBAction func updateCounter() {
-        // Calculate total time since timer started in seconds
-        time = Date().timeIntervalSinceReferenceDate - startTime
-        
-        // Calculate minutes
-        let minutes = UInt8(time / 60.0)
-        time -= (TimeInterval(minutes) * 60)
-        
-        // Calculate seconds
-        let seconds = UInt8(time)
-        time -= TimeInterval(seconds)
-        
-        // Format time vars with leading zero
-        let strMinutes = String(format: "%02d", minutes)
-        let strSeconds = String(format: "%02d", seconds)
-        
-        timerLabel.text = strMinutes + ":" + strSeconds
+        if seconds < 1 {
+            timer?.invalidate()
+            let msg = String(format:"Your score was %02i.\n Click OK to play again.", gameScore!)
+            let alert = UIAlertController(title: "Time's up!", message: msg, preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                switch action.style {
+                case .default:
+                    self.restartGame()
+                case .cancel:
+                    print("cancel")
+                case .destructive:
+                    print("destructive")
+                }}))
+            self.present(alert, animated: true, completion: nil)
+        } else {
+            seconds -= 1
+            let mins = Int(seconds) / 60 % 60
+            let secs = Int(seconds) % 60
+            timerLabel.text = String(format:"%02i:%02i", mins, secs)
+        }
+//        // Calculate total time since timer started in seconds
+//        time = Date().timeIntervalSinceReferenceDate - startTime
+//
+//        // Calculate minutes
+//        let minutes = UInt8(time / 60.0)
+//        time -= (TimeInterval(minutes) * 60)
+//
+//        // Calculate seconds
+//        let seconds = UInt8(time)
+//        time -= TimeInterval(seconds)
+//
+//        // Format time vars with leading zero
+//        let strMinutes = String(format: "%02d", minutes)
+//        let strSeconds = String(format: "%02d", seconds)
+//
+//        timerLabel.text = strMinutes + ":" + strSeconds
     }
     
     func play(move: Move) {

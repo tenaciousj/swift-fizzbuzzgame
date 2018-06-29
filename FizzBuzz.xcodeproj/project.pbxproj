@@ -87,9 +87,9 @@
 		E4D94D8920DA90600059D88C = {
 			isa = PBXGroup;
 			children = (
-				E4D94D9420DA90600059D88C /* fizzbuzz */,
-				E4D94DA920DA90610059D88C /* fizzbuzzTests */,
-				E4D94DB420DA90610059D88C /* fizzbuzzUITests */,
+				E4D94D9420DA90600059D88C /* FizzBuzz */,
+				E4D94DA920DA90610059D88C /* FizzBuzzTests */,
+				E4D94DB420DA90610059D88C /* FizzBuzzUITests */,
 				E4D94D9320DA90600059D88C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -104,7 +104,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		E4D94D9420DA90600059D88C /* fizzbuzz */ = {
+		E4D94D9420DA90600059D88C /* FizzBuzz */ = {
 			isa = PBXGroup;
 			children = (
 				E4D94D9520DA90600059D88C /* AppDelegate.swift */,
@@ -117,10 +117,10 @@
 				E4D94DCB20DA9A890059D88C /* Game.swift */,
 				E45E06F220DBFD310003B456 /* Move.swift */,
 			);
-			path = fizzbuzz;
+			path = FizzBuzz;
 			sourceTree = "<group>";
 		};
-		E4D94DA920DA90610059D88C /* fizzbuzzTests */ = {
+		E4D94DA920DA90610059D88C /* FizzBuzzTests */ = {
 			isa = PBXGroup;
 			children = (
 				E4D94DAC20DA90610059D88C /* Info.plist */,
@@ -128,16 +128,16 @@
 				E4D94DC920DA9A520059D88C /* GameTests.swift */,
 				E4D94DCD20DAE79D0059D88C /* ViewControllerUnitTests.swift */,
 			);
-			path = fizzbuzzTests;
+			path = FizzBuzzTests;
 			sourceTree = "<group>";
 		};
-		E4D94DB420DA90610059D88C /* fizzbuzzUITests */ = {
+		E4D94DB420DA90610059D88C /* FizzBuzzUITests */ = {
 			isa = PBXGroup;
 			children = (
 				E4D94DB720DA90610059D88C /* Info.plist */,
 				E463328820DBE57200EEBA96 /* ViewControllerUITests.swift */,
 			);
-			path = fizzbuzzUITests;
+			path = FizzBuzzUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -221,7 +221,7 @@
 					};
 				};
 			};
-			buildConfigurationList = E4D94D8D20DA90600059D88C /* Build configuration list for PBXProject "fizzbuzz" */;
+			buildConfigurationList = E4D94D8D20DA90600059D88C /* Build configuration list for PBXProject "FizzBuzz" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -502,7 +502,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/fizzbuzz.app/fizzbuzz";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FizzBuzz.temp_caseinsensitive_rename.app/FizzBuzz.temp_caseinsensitive_rename";
 			};
 			name = Debug;
 		};
@@ -523,7 +523,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/fizzbuzz.app/fizzbuzz";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FizzBuzz.temp_caseinsensitive_rename.app/FizzBuzz.temp_caseinsensitive_rename";
 			};
 			name = Release;
 		};
@@ -571,7 +571,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E4D94D8D20DA90600059D88C /* Build configuration list for PBXProject "fizzbuzz" */ = {
+		E4D94D8D20DA90600059D88C /* Build configuration list for PBXProject "FizzBuzz" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E4D94DB820DA90610059D88C /* Debug */,

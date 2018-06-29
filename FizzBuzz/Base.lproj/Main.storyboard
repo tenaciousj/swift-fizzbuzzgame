@@ -95,7 +95,7 @@
                                     <constraint firstAttribute="width" secondItem="OVK-N6-BQs" secondAttribute="height" multiplier="1:1" id="xoF-NH-m9a"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Lr-dt-bDP">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="00:30" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Lr-dt-bDP">
                                 <rect key="frame" x="19.999999999999996" y="40" width="53.666666666666657" height="27.666666666666671"/>
                                 <accessibility key="accessibilityConfiguration" identifier="timerLabel"/>
                                 <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="20"/>

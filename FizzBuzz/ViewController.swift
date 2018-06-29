@@ -11,10 +11,7 @@ import UIKit
 class ViewController: UIViewController {
     
     weak var timer: Timer?
-//    var startTime: Double = 0
-//    var time: Double = 0
-//    var elapsed: Double = 0
-    var seconds = 30
+    var seconds: Double = 30
     var status: Bool = false
     var highScore = 0
     
@@ -47,7 +44,6 @@ class ViewController: UIViewController {
         }
         
         gameScore = unwrappedGame.score
-//        timerLabel.text = "00:00"
         
         let defaults = UserDefaults.standard
         if defaults.value(forKey: "highScore") != nil {
@@ -67,34 +63,19 @@ class ViewController: UIViewController {
     func startTimer() {
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(ViewController.updateCounter)), userInfo: nil, repeats: true)
         status = true
-//        startTime = Date().timeIntervalSinceReferenceDate - elapsed
-//        timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
-//
-//        // Set Start/Stop button to true
-//        status = true
     }
     
     func stopTimer() {
         
         timer?.invalidate()
         status = false
-//        elapsed = Date().timeIntervalSinceReferenceDate - startTime
-//        timer?.invalidate()
-//
-//        // Set Start/Stop button to false
-//        status = false
         
     }
     
     func resetTimer() {
         
-        // Invalidate timer
         timer?.invalidate()
 
-        // Reset timer variables
-//        startTime = 0
-//        time = 0
-//        elapsed = 0
         status = false
         seconds = 30
 
@@ -105,7 +86,10 @@ class ViewController: UIViewController {
     @IBAction func updateCounter() {
         if seconds < 1 {
             timer?.invalidate()
-            let msg = String(format:"Your score was %02i.\n Click OK to play again.", gameScore!)
+            var msg = String(format:"Your score was %02i.\n Click OK to play again.", gameScore!)
+            if gameScore! > highScore {
+                msg += "\nNEW HIGH SCORE: " + String(gameScore!)
+            }
             let alert = UIAlertController(title: "Time's up!", message: msg, preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
                 switch action.style {
@@ -123,22 +107,6 @@ class ViewController: UIViewController {
             let secs = Int(seconds) % 60
             timerLabel.text = String(format:"%02i:%02i", mins, secs)
         }
-//        // Calculate total time since timer started in seconds
-//        time = Date().timeIntervalSinceReferenceDate - startTime
-//
-//        // Calculate minutes
-//        let minutes = UInt8(time / 60.0)
-//        time -= (TimeInterval(minutes) * 60)
-//
-//        // Calculate seconds
-//        let seconds = UInt8(time)
-//        time -= TimeInterval(seconds)
-//
-//        // Format time vars with leading zero
-//        let strMinutes = String(format: "%02d", minutes)
-//        let strSeconds = String(format: "%02d", seconds)
-//
-//        timerLabel.text = strMinutes + ":" + strSeconds
     }
     
     func play(move: Move) {
@@ -152,7 +120,10 @@ class ViewController: UIViewController {
         let response = unwrappedGame.play(move: move)
         if !response.right {
             stopTimer()
-            let msg = "Time: " + timerLabel.text! + "\n" + "You lost the game! Click OK to play again."
+            var msg = "Time: " + timerLabel.text! + "\n" + "You lost the game! Click OK to play again."
+            if gameScore! > highScore {
+                msg += "\nNEW HIGH SCORE: " + String(gameScore!)
+            }
             let alert = UIAlertController(title: "Wrong!", message: msg, preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
                 switch action.style {
